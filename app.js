@@ -1,10 +1,10 @@
-// CODE VOLONTAIREMENT MAL STRUCTURÉ - Complexité élevée
+// CODE VOLONTAIREMENT MAL STRUCTURÉ
+// Complexité cyclomatique élevée pour l'audit
 
 function additionner(a, b) {
     return a + b;
 }
 
-// Fonction très complexe (complexité > 19)
 function evaluerPerformance(score, anciennete, projets) {
     let appreciation = "";
     
@@ -64,7 +64,6 @@ function evaluerPerformance(score, anciennete, projets) {
         }
     }
     
-    // Boucles imbriquées pour augmenter la complexité
     let total = 0;
     for (let i = 0; i < 5; i++) {
         for (let j = 0; j < 5; j++) {
@@ -84,11 +83,9 @@ function evaluerPerformance(score, anciennete, projets) {
         }
     }
     
-    // Retourner le résultat avec l'appréciation
-    return appreciation + " (" + total + " points calculés)";
+    return appreciation + " (" + total + " points)";
 }
 
-// Fonction supplémentaire complexe
 function analyserDonnees(valeurs) {
     let resultats = [];
     
