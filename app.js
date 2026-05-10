@@ -4,67 +4,67 @@ function additionner(a, b) {
     return a + b;
 }
 
-// Fonction très complexe (complexité > 20)
+// Fonction très complexe (complexité > 19)
 function evaluerPerformance(score, anciennete, projets) {
-    let resultat = "";
+    let appreciation = "";
     
     if (score >= 90) {
         if (anciennete >= 5) {
             if (projets >= 10) {
                 if (score >= 95) {
                     if (projets >= 15) {
-                        resultat = "Excellent +++";
+                        appreciation = "Excellent +++";
                     } else {
-                        resultat = "Excellent +";
+                        appreciation = "Excellent +";
                     }
                 } else {
-                    resultat = "Excellent";
+                    appreciation = "Excellent";
                 }
             } else {
                 if (score >= 92) {
-                    resultat = "Très bon +";
+                    appreciation = "Très bon +";
                 } else {
-                    resultat = "Très bon";
+                    appreciation = "Très bon";
                 }
             }
         } else {
             if (projets >= 8) {
                 if (score >= 93) {
-                    resultat = "Bon potentiel";
+                    appreciation = "Bon potentiel";
                 } else {
-                    resultat = "Bon";
+                    appreciation = "Bon";
                 }
             } else {
-                resultat = "Correct";
+                appreciation = "Correct";
             }
         }
     } else if (score >= 75) {
         if (anciennete >= 3) {
             if (projets >= 5) {
-                resultat = "Satisfaisant";
+                appreciation = "Satisfaisant";
             } else {
                 if (score >= 80) {
-                    resultat = "Moyen supérieur";
+                    appreciation = "Moyen supérieur";
                 } else {
-                    resultat = "Moyen";
+                    appreciation = "Moyen";
                 }
             }
         } else {
-            resultat = "À améliorer";
+            appreciation = "À améliorer";
         }
     } else {
         if (score >= 60) {
-            resultat = "Passable";
+            appreciation = "Passable";
         } else {
             if (score >= 40) {
-                resultat = "Insuffisant";
+                appreciation = "Insuffisant";
             } else {
-                resultat = "Critique";
+                appreciation = "Critique";
             }
         }
     }
     
-    // Boucles imbriquées
+    // Boucles imbriquées pour augmenter la complexité
     let total = 0;
     for (let i = 0; i < 5; i++) {
         for (let j = 0; j < 5; j++) {
@@ -74,11 +74,55 @@ function evaluerPerformance(score, anciennete, projets) {
                 } else {
                     total += i + j;
                 }
+            } else {
+                if (j % 2 === 0) {
+                    total += i + j;
+                } else {
+                    total += i * j;
+                }
             }
         }
     }
     
-    return resultat + " (" + total + ")";
+    // Retourner le résultat avec l'appréciation
+    return appreciation + " (" + total + " points calculés)";
 }
 
-export { additionner, evaluerPerformance };
+// Fonction supplémentaire complexe
+function analyserDonnees(valeurs) {
+    let resultats = [];
+    
+    for (let i = 0; i < valeurs.length; i++) {
+        for (let j = 0; j < valeurs.length; j++) {
+            if (valeurs[i] > valeurs[j]) {
+                if (i === j) {
+                    resultats.push(valeurs[i] * 2);
+                } else if (i < j) {
+                    if (valeurs[j] > 0) {
+                        resultats.push(valeurs[i] + valeurs[j]);
+                    } else {
+                        resultats.push(valeurs[i] - valeurs[j]);
+                    }
+                } else {
+                    if (valeurs[i] > 10) {
+                        resultats.push(valeurs[i] / valeurs[j]);
+                    } else {
+                        resultats.push(valeurs[j] - valeurs[i]);
+                    }
+                }
+            } else {
+                if (valeurs[i] === valeurs[j]) {
+                    resultats.push(0);
+                } else {
+                    for (let k = 0; k < 3; k++) {
+                        resultats.push(valeurs[i] * k);
+                    }
+                }
+            }
+        }
+    }
+    
+    return resultats;
+}
+
+export { additionner, evaluerPerformance, analyserDonnees };
