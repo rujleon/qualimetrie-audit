@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1778504412268" clover="3.2.0">
+  <project timestamp="1778504412268" name="All files">
+    <metrics statements="31" coveredstatements="30" conditionals="36" coveredconditionals="35" methods="7" coveredmethods="7" elements="74" coveredelements="72" complexity="0" loc="31" ncloc="31" packages="1" files="1" classes="1"/>
+    <file name="app.js" path="/home/leon/dev/a_dev_bossGID/a_gid_M2/qualimetrie/app.js">
+      <metrics statements="31" coveredstatements="30" conditionals="36" coveredconditionals="35" methods="7" coveredmethods="7"/>
+      <line num="10" count="23" type="stmt"/>
+      <line num="14" count="11" type="stmt"/>
+      <line num="21" count="1" type="stmt"/>
+      <line num="31" count="10" type="cond" truecount="3" falsecount="1"/>
+      <line num="33" count="10" type="stmt"/>
+      <line num="35" count="23" type="cond" truecount="2" falsecount="0"/>
+      <line num="37" count="0" type="stmt"/>
+      <line num="46" count="19" type="cond" truecount="2" falsecount="0"/>
+      <line num="47" count="16" type="cond" truecount="2" falsecount="0"/>
+      <line num="50" count="13" type="cond" truecount="2" falsecount="0"/>
+      <line num="51" count="13" type="cond" truecount="4" falsecount="0"/>
+      <line num="54" count="10" type="stmt"/>
+      <line num="57" count="10" type="cond" truecount="4" falsecount="0"/>
+      <line num="58" count="4" type="stmt"/>
+      <line num="61" count="6" type="stmt"/>
+      <line num="69" count="10" type="cond" truecount="2" falsecount="0"/>
+      <line num="71" count="6" type="stmt"/>
+      <line num="72" count="6" type="stmt"/>
+      <line num="74" count="16" type="stmt"/>
+      <line num="76" count="6" type="stmt"/>
+      <line num="80" count="16" type="cond" truecount="4" falsecount="0"/>
+      <line num="81" count="12" type="cond" truecount="2" falsecount="0"/>
+      <line num="82" count="9" type="cond" truecount="2" falsecount="0"/>
+      <line num="83" count="6" type="stmt"/>
+      <line num="91" count="12" type="cond" truecount="2" falsecount="0"/>
+      <line num="93" count="8" type="stmt"/>
+      <line num="94" count="8" type="stmt"/>
+      <line num="96" count="24" type="cond" truecount="4" falsecount="0"/>
+      <line num="97" count="19" type="stmt"/>
+      <line num="100" count="8" type="stmt"/>
+      <line num="114" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
