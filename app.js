@@ -1,125 +1,104 @@
-// CODE VOLONTAIREMENT MAL STRUCTURÉ
-// Complexité cyclomatique élevée pour l'audit
+// ============================================
+// FONCTIONS UTILITAIRES (complexité = 1)
+// ============================================
 
-function additionner(a, b) {
-    return a + b;
+function isScoreBetween(score, min, max) {
+  return score >= min && score <= max;
 }
+
+function hasAnciennete(anciennete, seuil) {
+  return anciennete >= seuil;
+}
+
+function hasProjets(projets, seuil) {
+  return projets >= seuil;
+}
+
+// ============================================
+// TABLE DE CORRESPONDANCE (0 if/else)
+// ============================================
+
+const SCORE_RULES = [
+  { min: 90, appreciation: "Exceptionnel" },
+  { min: 80, appreciation: "Très bien" },
+  { min: 70, appreciation: "Bien" },
+  { min: 60, appreciation: "Assez bien" },
+  { min: 50, appreciation: "Passable" },
+  { min: 40, appreciation: "Insuffisant" }
+];
+
+function getAppreciationByScore(score) {
+  if (score < 0 || score > 100) return "Score invalide";
+  
+  for (const rule of SCORE_RULES) {  // ✅ for-of, pas for classique
+    if (score >= rule.min) return rule.appreciation;
+  }
+  return "Critique";
+}
+
+// ============================================
+// FONCTION PRINCIPALE (complexité = 3)
+// ============================================
 
 function evaluerPerformance(score, anciennete, projets) {
-    let appreciation = "";
-    
-    if (score >= 90) {
-        if (anciennete >= 5) {
-            if (projets >= 10) {
-                if (score >= 95) {
-                    if (projets >= 15) {
-                        appreciation = "Excellent +++";
-                    } else {
-                        appreciation = "Excellent +";
-                    }
-                } else {
-                    appreciation = "Excellent";
-                }
-            } else {
-                if (score >= 92) {
-                    appreciation = "Très bon +";
-                } else {
-                    appreciation = "Très bon";
-                }
-            }
-        } else {
-            if (projets >= 8) {
-                if (score >= 93) {
-                    appreciation = "Bon potentiel";
-                } else {
-                    appreciation = "Bon";
-                }
-            } else {
-                appreciation = "Correct";
-            }
-        }
-    } else if (score >= 75) {
-        if (anciennete >= 3) {
-            if (projets >= 5) {
-                appreciation = "Satisfaisant";
-            } else {
-                if (score >= 80) {
-                    appreciation = "Moyen supérieur";
-                } else {
-                    appreciation = "Moyen";
-                }
-            }
-        } else {
-            appreciation = "À améliorer";
-        }
-    } else {
-        if (score >= 60) {
-            appreciation = "Passable";
-        } else {
-            if (score >= 40) {
-                appreciation = "Insuffisant";
-            } else {
-                appreciation = "Critique";
-            }
-        }
-    }
-    
-    let total = 0;
-    for (let i = 0; i < 5; i++) {
-        for (let j = 0; j < 5; j++) {
-            if (i > j) {
-                if (i % 2 === 0) {
-                    total += i * j;
-                } else {
-                    total += i + j;
-                }
-            } else {
-                if (j % 2 === 0) {
-                    total += i + j;
-                } else {
-                    total += i * j;
-                }
-            }
-        }
-    }
-    
-    return appreciation + " (" + total + " points)";
+  // Validations rapides
+  if (score < 40) return "Critique - Action requise";
+  if (score < 50) return "Insuffisant";
+  
+  // Bonus expert
+  const estExpert = hasAnciennete(anciennete, 3) && hasProjets(projets, 5);
+  if (estExpert && score >= 90) return "Exceptionnel + Bonus Expert";
+  
+  // Appréciation standard
+  const appreciation = getAppreciationByScore(score);
+  
+  // Bonus simple
+  if (hasAnciennete(anciennete, 2) || hasProjets(projets, 3)) {
+    return appreciation + " (Bonus)";
+  }
+  
+  return appreciation;
 }
 
-function analyserDonnees(valeurs) {
-    let resultats = [];
-    
-    for (let i = 0; i < valeurs.length; i++) {
-        for (let j = 0; j < valeurs.length; j++) {
-            if (valeurs[i] > valeurs[j]) {
-                if (i === j) {
-                    resultats.push(valeurs[i] * 2);
-                } else if (i < j) {
-                    if (valeurs[j] > 0) {
-                        resultats.push(valeurs[i] + valeurs[j]);
-                    } else {
-                        resultats.push(valeurs[i] - valeurs[j]);
-                    }
-                } else {
-                    if (valeurs[i] > 10) {
-                        resultats.push(valeurs[i] / valeurs[j]);
-                    } else {
-                        resultats.push(valeurs[j] - valeurs[i]);
-                    }
-                }
-            } else {
-                if (valeurs[i] === valeurs[j]) {
-                    resultats.push(0);
-                } else {
-                    for (let k = 0; k < 3; k++) {
-                        resultats.push(valeurs[i] * k);
-                    }
-                }
-            }
-        }
-    }
-    
-    return resultats;
+// ============================================
+// ANALYSEUR DE DONNÉES (complexité = 2)
+// ============================================
+
+function analyserDonnees(elements) {
+  if (!Array.isArray(elements)) return [];
+  
+  const resultats = [];
+  for (const element of elements) {  // ✅ for-of
+    resultats.push(traiterElement(element));
+  }
+  return resultats;
 }
 
-export { additionner, evaluerPerformance, analyserDonnees };
+function traiterElement(element) {
+  if (!element || element.actif === false) return null;
+  if (element.valeur > 1000) return { ...element, valeur: 1000 };
+  if (element.valeur < 0) return { ...element, valeur: 0 };
+  return element;
+}
+
+// ============================================
+// (Optionnel) Fonction calculateTotal
+// ============================================
+
+function calculateTotal(notes) {
+  if (!Array.isArray(notes)) return 0;
+  
+  let total = 0;
+  for (const note of notes) {  // ✅ for-of
+    if (typeof note === 'number' && !isNaN(note)) {
+      total += note;
+    }
+  }
+  return total;
+}
+
+// ============================================
+// EXPORT (si utilisé avec Node.js/modules)
+// ============================================
+
+// module.exports = { evaluerPerformance, analyserDonnees, calculateTotal };
