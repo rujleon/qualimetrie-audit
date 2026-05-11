@@ -2,34 +2,31 @@ import js from "@eslint/js";
 import globals from "globals";
 
 export default [
-  // 1. Ignorer les dossiers inutiles
+  // Ignorations globales (très important de le mettre en premier)
   {
-    ignores: ["coverage/**", "dist/**", "build/**", "node_modules/**"]
+    ignores: [
+      "coverage/**",
+      "dist/**",
+      "build/**",
+      "node_modules/**",
+      "*.config.js",     // optionnel
+      "lcov-report/**"
+    ]
   },
 
-  // 2. Configuration de base ESLint
   js.configs.recommended,
 
-  // 3. Variables globales pour tout le projet (Node.js)
+  // Globals pour tout le projet
   {
     languageOptions: {
       globals: {
         ...globals.node,
-      },
-    },
-  },
-
-  // 4. Variables globales Jest pour les fichiers de test
-  {
-    files: ["**/*.test.js", "**/*.spec.js"],
-    languageOptions: {
-      globals: {
         ...globals.jest,
       },
     },
   },
 
-  // 5. Configuration spécifique pour jest.config.js
+  // Configuration spécifique pour jest.config.js (au cas où)
   {
     files: ["jest.config.js"],
     languageOptions: {
