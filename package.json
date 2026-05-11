@@ -10,7 +10,7 @@
     "format:check": "prettier --check .",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "test:ci": "jest --coverage --watchAll=false --ci"
+    "test:ci": "jest --coverage --coverageReporters=lcov,text --watchAll=false --ci --detectOpenHandles"
   },
   "devDependencies": {
     "@eslint/js": "^9.27.0",
