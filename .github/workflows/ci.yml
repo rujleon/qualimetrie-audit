@@ -23,10 +23,12 @@ jobs:
         run: npm ci
 
       - name: ESLint
-        run: npx eslint . --max-warnings 0 || true
+        run: npx eslint . --max-warnings 0
+        # ← Supprimé "|| true"
 
-      - name: Tests
-        run: npm test || true
+      - name: Run tests with coverage
+        run: npm run test:ci
+        # ← Utilise test:ci qui existe dans ton package.json
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
