@@ -1,6 +1,11 @@
+# === Ignoré par ESLint ===
 coverage/
 lcov-report/
 .nyc_output/
 node_modules/
 dist/
 build/
+
+# Fichiers de config (optionnel)
+*.config.js
+jest.config.js
