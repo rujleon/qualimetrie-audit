@@ -1,9 +1,6 @@
-# Coverage reports
 coverage/
 lcov-report/
 .nyc_output/
-
-# Autres dossiers inutiles
 node_modules/
 dist/
 build/
