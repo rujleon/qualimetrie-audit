@@ -2,33 +2,41 @@ import js from "@eslint/js";
 import globals from "globals";
 
 export default [
-  js.configs.recommended,
+  // 1. Ignorer les dossiers inutiles
   {
-    files: ["**/*.js"],
+    ignores: ["coverage/**", "dist/**", "build/**", "node_modules/**"]
+  },
+
+  // 2. Configuration de base ESLint
+  js.configs.recommended,
+
+  // 3. Variables globales pour tout le projet (Node.js)
+  {
     languageOptions: {
       globals: {
         ...globals.node,
-        ...globals.jest,  // ← Ajoute Jest globals
       },
-      ecmaVersion: 2022,
-      sourceType: "module",
-    },
-    rules: {
-      "complexity": ["error", 10],
-      "no-unused-vars": "warn",
-      "no-undef": "off",  // ← Désactive no-undef (géré par globals)
     },
   },
+
+  // 4. Variables globales Jest pour les fichiers de test
   {
-    files: ["**/*.test.js"],  // ← Règles spécifiques pour les tests
+    files: ["**/*.test.js", "**/*.spec.js"],
     languageOptions: {
       globals: {
         ...globals.jest,
-        ...globals.node,
       },
     },
-    rules: {
-      "no-undef": "off",
+  },
+
+  // 5. Configuration spécifique pour jest.config.js
+  {
+    files: ["jest.config.js"],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        module: "writable",
+      },
     },
   },
 ];
