@@ -1,11 +1,19 @@
-# === Ignoré par ESLint ===
+# Coverage & Test reports
 coverage/
 lcov-report/
 .nyc_output/
+
+# Dependencies
 node_modules/
-dist/
+
+# Build folders
 build/
 
-# Fichiers de config (optionnel)
-*.config.js
+# Config files
 jest.config.js
+*.config.js
+
+# Misc
+*.log
+.DS_Store
+.env

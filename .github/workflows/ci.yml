@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: ESLint
-        run: npx eslint . --max-warnings 0
+        run: npx eslint . --max-warnings 0 --ignore-pattern "coverage/" --ignore-pattern "lcov-report/"
         # ← Supprimé "|| true"
 
       - name: Run tests with coverage

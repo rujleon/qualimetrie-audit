@@ -1,0 +1,7 @@
+organization=rujleon
+projectKey=rujleon_qualimetrie-audit
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.87270
+dashboardUrl=https://sonarcloud.io/dashboard?id=rujleon_qualimetrie-audit
+ceTaskId=AZ4crebLuBcCiqa1jq2U
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZ4crebLuBcCiqa1jq2U
